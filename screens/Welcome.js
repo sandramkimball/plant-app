@@ -111,7 +111,7 @@ class Welcome extends Component {
                     <Button gradient onPress={()=> navigation.navigate('Login')}>
                         <Text center semibold>Login</Text>
                     </Button>
-                    <Button shadow onPress={()=> navigation.navigate('Signup')}>
+                    <Button shadow onPress={()=> navigation.navigate('SignUp')}>
                         <Text center semibold>SignUp</Text>
                         </Button>
                     <Button onPress={()=> this.setState({ showTerms: true })}>

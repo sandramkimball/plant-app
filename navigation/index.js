@@ -23,11 +23,22 @@ const screens = createStackNavigator({
     Settings
 }, {
     defaultNavigationOptions: {
-        headerStyle: {},
-        headerBackImage: <Image />,
+        headerStyle: {
+            height: theme.sizes.base = 4,
+            backgroundColor: theme.colors.white,
+            borderBottomColor: 'transparent',
+            elevation: 0, // for android
+        },
+        headerBackImage: <Image source={ require('../assets/icons/back.png')} />,
         headerBackTitle: null,
-        headerLeftContainerStyle: {},
-        headerRightContainerStyle: {}
+        headerLeftContainerStyle: {
+            alignItems: 'center',
+            marginLeft: theme.sizes.padding * 1.2,
+            paddingRight: theme.sizes.base
+        },
+        headerRightContainerStyle: {
+            alignItems: 'center',
+            paddingRight: theme.sizes.base}
     }
 });
 

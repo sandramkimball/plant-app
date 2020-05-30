@@ -72,10 +72,12 @@ const explore = [
 ]
 
 const profile = {
-    username: 'Panda',
+    name: 'Pandy Blossom',
     location: 'USA',
     email: 'panda6@panda.com',
-    avatar: null,
+    budget='900',
+    cap='950',
+    avatar: require('../assets/images/flowers.png'),
     notifications: true,
     newsletter: false
 }

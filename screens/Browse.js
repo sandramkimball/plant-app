@@ -5,7 +5,20 @@ import { theme, mocks } from '../constants';
 
 class Browse extends Component {
     state = {
-        active: 'Products'
+        active: 'Products',
+        categories: [],
+    }
+
+
+    componentDidMount(){
+        this.setState({ categoies: this.props.categories })
+    }
+    handleTab = tab => {
+        const { categories } = this.props;
+        const filtered = categories.filter(
+            category=> category.tags.includes(tab.toLowerCase())
+        );
+        this.setState({ active: tab, categories: filtered })
     }
 
     renderTab(tab){
@@ -14,20 +27,22 @@ class Browse extends Component {
         return (
             <TouchableOpacity
                 key={`tab-${tab}`}
-                onPress={()=> this.setState({ active: tab})}
+                onPress={()=> this.handleTab({ tab })}
                 style={[
                     styles.tab,
                     isActive ? styles.active: null
                 ]}
             >
-                <Text header medium gray={!isActive} secondary={isActive}>{tab}</Text>
+                <Text header medium gray={!isActive} secondary={isActive}>
+                    {tab}
+                </Text>
             </TouchableOpacity>
-
         )
     }
 
     render() {
         const { profile, navigation } = this.props;
+        const { categories } = this.state;
         const tabs = ['Products', 'Inspurations', 'Shop']
 
         return (
@@ -54,7 +69,7 @@ class Browse extends Component {
                         {categories.map(category=> {
                             <TouchableOpacity 
                                 key={category.name}
-                                onPress={()=> navigation.navigate('Explore', { category})}
+                                onPress={()=> navigation.navigate('Explore', { category })}
                             >
                                 <Card center middle shadow styles={styles.category}>
                                     <Badge margin={[0, 0, 15]} suze={50} color="rgba(41,216,143,0.20">
@@ -67,7 +82,6 @@ class Browse extends Component {
                         })}
                     </Block>
                 </ScrollView>
-
             </Block>
         )
     }
@@ -87,7 +101,6 @@ const styles = StyleSheet.create({
     avatar: {
         height: theme.sizes.base * 2.2,
         width: theme.sizes.base * 2.2,
-
     },
     tabs: {
         borderBottomColor: themse.colors.gray2,
